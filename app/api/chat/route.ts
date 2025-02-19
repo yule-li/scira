@@ -2,6 +2,7 @@
 import { getGroupConfig } from '@/app/actions';
 import { serverEnv } from '@/env/server';
 import { xai } from '@ai-sdk/xai';
+import { openai } from '@ai-sdk/openai';
 import { cerebras } from '@ai-sdk/cerebras';
 import { anthropic } from '@ai-sdk/anthropic'
 import { groq } from '@ai-sdk/groq'
@@ -24,7 +25,7 @@ import { z } from 'zod';
 
 const scira = customProvider({
     languageModels: {
-        'scira-default': xai('grok-2-1212'),
+        'scira-default': openai('gpt-4o'),
         'scira-grok-vision': xai('grok-2-vision-1212'),
         'scira-llama': cerebras('llama-3.3-70b'),
         'scira-sonnet': anthropic('claude-3-5-sonnet-20241022'),
