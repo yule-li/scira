@@ -33,7 +33,7 @@ A minimalistic AI-powered search engine that helps you find information on the i
 
 ## Features
 
-- **AI-powered search**: Get answers to your questions using Anthropic's Models.
+- **AI-powered search**: Get answers to your questions using advanced AI models.
 - **Web search**: Search the web using Tavily's API.
 - **URL Specific search**: Get information from a specific URL.
 - **Weather**: Get the current weather for any location using OpenWeather's API.
@@ -48,7 +48,7 @@ A minimalistic AI-powered search engine that helps you find information on the i
 
 ## LLM used
 - [xAI's Grok](https://x.ai/grok)
-- [Anthropic's Claude 3.5 Sonnet](https://www.anthropic.com/news/claude-3-5-sonnet)
+- [Google's Gemini Flash 2.0](https://ai.google.dev/docs/gemini_api_overview)
 - [Meta's Llama 3.3 70B by Cerebras](https://inference-docs.cerebras.ai/introduction)
 - [Deepseek R1 Distill by Groq Inc](https://console.groq.com/docs/model/deepseek-r1-distill-llama-70b)
 - [OpenAI's o3-mini](https://openai.com/index/openai-o3-mini/)
@@ -135,7 +135,7 @@ To run the application locally without Docker:
 
 1. Sign up for accounts with the required AI providers:
    - OpenAI (required)
-   - Anthropic (required)
+   - Google Gemini (required)
    - Tavily (required for web search feature)
 2. Copy `.env.example` to `.env.local` and fill in your API keys
 3. Install dependencies:

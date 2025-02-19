@@ -14,15 +14,13 @@ export const gemini = (model: string) => {
   });
 
   const wrappedModel: LanguageModelV1 = {
-    specificationVersion: 'v1',
     provider: 'google',
     modelId: model,
-    defaultObjectGenerationMode: 'json',
-    async generateText(prompt: string) {
+    async complete(prompt: string) {
       const result = await modelInstance.generateContent(prompt);
       return result.response.text();
     },
-    async generateTextStream(prompt: string) {
+    async completeStream(prompt: string) {
       const result = await modelInstance.generateContentStream(prompt);
       return result.stream;
     }
