@@ -1,4 +1,5 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, GenerateContentResult } from '@google/generative-ai';
+import { AIStream, StreamingTextResponse } from 'ai';
 import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions } from 'ai';
 
 export const gemini = (model: string) => {
@@ -19,24 +20,8 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      const response: {
-        text?: string;
-        reasoning?: string;
-        toolCalls?: any[];
-        logprobs?: any;
-        raw?: any;
-        tokens?: any;
-        functionCallResult?: any;
-        selectedFunctionCall?: any;
-        choices?: any;
-        finishReason?: string;
-        usage?: {
-          promptTokens: number;
-          completionTokens: number;
-          totalTokens: number;
-        };
-      } = {
-        text: text,
+      return {
+        text,
         finishReason: 'stop',
         usage: {
           promptTokens: 0,
@@ -44,11 +29,11 @@ export const gemini = (model: string) => {
           totalTokens: 0
         }
       };
-      return response;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
-      return result.stream;
+      const stream = AIStream(result.stream);
+      return new StreamingTextResponse(stream);
     }
   };
 
