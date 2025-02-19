@@ -16,11 +16,11 @@ export const gemini = (model: string) => {
   const wrappedModel: LanguageModelV1 = {
     provider: 'google',
     modelId: model,
-    async text(input: string) {
+    async complete(input: string) {
       const result = await modelInstance.generateContent(input);
       return result.response.text();
     },
-    async stream(input: string) {
+    async completeStream(input: string) {
       const result = await modelInstance.generateContentStream(input);
       return result.stream;
     }
