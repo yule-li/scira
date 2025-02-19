@@ -28,7 +28,17 @@ export const gemini = (model: string) => {
         tokens: undefined,
         functionCallResult: undefined,
         selectedFunctionCall: undefined,
-        choices: undefined
+        choices: undefined,
+        finishReason: 'stop',
+        usage: {
+          promptTokens: 0,
+          completionTokens: 0,
+          totalTokens: 0
+        },
+        rawCall: {
+          request: options,
+          response: result
+        }
       };
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
