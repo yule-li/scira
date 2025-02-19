@@ -48,7 +48,7 @@ export const gemini = (model: string) => {
         }
       };
     },
-    async doGenerateStream(options: LanguageModelV1CallOptions) {
+    async doStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
       const stream = result.stream;
       return new ReadableStream<LanguageModelV1StreamPart>({
