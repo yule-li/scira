@@ -51,7 +51,7 @@ export const gemini = (model: string) => {
     async doStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
       const stream = result.stream;
-      return new ReadableStream<LanguageModelV1StreamPart>({
+      const streamResponse = new ReadableStream<LanguageModelV1StreamPart>({
         async start(controller) {
           try {
             for await (const chunk of stream) {
@@ -67,6 +67,22 @@ export const gemini = (model: string) => {
           }
         }
       });
+      return {
+        stream: streamResponse,
+        rawCall: {
+          rawPrompt: options.prompt,
+          rawSettings: {
+            temperature: 0.7,
+            topP: 0.8,
+            topK: 40,
+            maxOutputTokens: 2048
+          }
+        },
+        rawResponse: {
+          headers: {}
+        },
+        warnings: []
+      };
     }
   };
 
