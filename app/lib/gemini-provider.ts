@@ -22,13 +22,15 @@ export const gemini = (model: string) => {
       return {
         text: text ?? undefined,
         reasoning: undefined,
-        toolCalls: [],
+        toolCalls: undefined,
         logprobs: undefined,
         raw: undefined,
         tokens: undefined,
         functionCallResult: undefined,
         selectedFunctionCall: undefined,
-        choices: undefined
+        choices: undefined,
+        model: model,
+        provider: 'google'
       };
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
