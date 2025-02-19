@@ -28,7 +28,9 @@ export const gemini = (model: string) => {
         tokens: undefined,
         functionCallResult: undefined,
         selectedFunctionCall: undefined,
-        choices: undefined
+        choices: undefined,
+        model: model,
+        provider: 'google'
       };
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
