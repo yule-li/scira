@@ -45,22 +45,12 @@ const XAIIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
-const AnthropicIcon = ({ className }: { className?: string }) => (
-    <svg 
-        role="img" 
-        viewBox="0 0 24 24" 
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-    >
-        <title>Anthropic</title>
-        <path fill="currentColor" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
-    </svg>
-);
+
 
 const models = [
     { value: "scira-default", label: "Grok 2.0", icon: XAIIcon, iconClass: "!text-neutral-300", description: "xAI's Grok 2.0 model", color: "glossyblack", vision: false, experimental: false, category: "Stable" },
     { value: "scira-grok-vision", label: "Grok 2.0 Vision", icon: XAIIcon, iconClass: "!text-neutral-300", description: "xAI's Grok 2.0 Vision model", color: "steel", vision: true, experimental: false, category: "Stable" },
-    { value: "scira-sonnet", label: "Claude 3.5 Sonnet", icon: AnthropicIcon, iconClass: "!text-neutral-900 dark:!text-white", description: "Anthropic's G.O.A.T. model", color: "purple", vision: true, experimental: false, category: "Stable" },
+    { value: "scira-gemini", label: "Gemini Flash 2.0", icon: "/google.svg", iconClass: "!text-neutral-300", description: "Google's Gemini Flash 2.0 model", color: "sapphire", vision: false, experimental: false, category: "Stable" },
     { value: "scira-llama", label: "Llama 3.3 70B", icon: "/cerebras.png", iconClass: "!text-neutral-900 dark:!text-white", description: "Meta's Llama model by Cerebras", color: "offgray", vision: false, experimental: true, category: "Experimental" },
     { value: "scira-r1", label: "DeepSeek R1 Distilled", icon: "/groq.svg", iconClass: "!text-neutral-900 dark:!text-white", description: "DeepSeek R1 model by Groq", color: "sapphire", vision: false, experimental: true, category: "Experimental" },
 ];
