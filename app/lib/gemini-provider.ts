@@ -17,7 +17,7 @@ export const gemini = (model: string) => {
     provider: 'google',
     modelId: model,
     async doGenerate(options: LanguageModelV1CallOptions) {
-      const result = await modelInstance.generateContent(options.input);
+      const result = await modelInstance.generateContent(options.prompt);
       return {
         text: result.response.text(),
         reasoning: undefined,
@@ -26,7 +26,7 @@ export const gemini = (model: string) => {
       };
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
-      const result = await modelInstance.generateContentStream(options.input);
+      const result = await modelInstance.generateContentStream(options.prompt);
       return result.stream;
     }
   };
