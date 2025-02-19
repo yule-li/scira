@@ -16,6 +16,8 @@ export const gemini = (model: string) => {
   const wrappedModel: LanguageModelV1 = {
     provider: 'google',
     modelId: model,
+    specificationVersion: '1.0',
+    defaultObjectGenerationMode: 'json',
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
