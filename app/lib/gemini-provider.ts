@@ -19,16 +19,24 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      return {
+      const response: {
+        text?: string;
+        reasoning?: string;
+        toolCalls?: any[];
+        logprobs?: any;
+        raw?: any;
+        tokens?: any;
+        functionCallResult?: any;
+        selectedFunctionCall?: any;
+        choices?: any;
+        finishReason?: string;
+        usage?: {
+          promptTokens: number;
+          completionTokens: number;
+          totalTokens: number;
+        };
+      } = {
         text: text ?? undefined,
-        reasoning: undefined,
-        toolCalls: undefined,
-        logprobs: undefined,
-        raw: undefined,
-        tokens: undefined,
-        functionCallResult: undefined,
-        selectedFunctionCall: undefined,
-        choices: undefined,
         finishReason: 'stop',
         usage: {
           promptTokens: 0,
@@ -36,6 +44,7 @@ export const gemini = (model: string) => {
           totalTokens: 0
         }
       };
+      return response;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
