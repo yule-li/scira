@@ -110,7 +110,6 @@ import {
     generateSpeech,
     suggestQuestions
 } from './actions';
-import { TrendingQuery } from './api/trending/route';
 import InteractiveStockChart from '@/components/interactive-stock-chart';
 import { CurrencyConverter } from '@/components/currency_conv';
 import { ReasoningUIPart, ToolInvocationUIPart, TextUIPart } from '@ai-sdk/ui-utils';
@@ -689,6 +688,12 @@ const HomeContent = () => {
     const CACHE_KEY = 'trendingQueriesCache';
     const CACHE_DURATION = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
 
+    interface TrendingQuery {
+        icon: string;
+        text: string;
+        category: string;
+    }
+
     interface TrendingQueriesCache {
         data: TrendingQuery[];
         timestamp: number;
@@ -715,7 +720,7 @@ const HomeContent = () => {
         console.log("selectedModel", selectedModel);
     }, [selectedModel]);
 
-    const [trendingQueries, setTrendingQueries] = useState<TrendingQuery[]>([]);
+    const [trendingQueries, setTrendingQueries] = useState<any[]>([]);
 
     const chatOptions: UseChatOptions = useMemo(() => ({
         maxSteps: 5,
@@ -1128,7 +1133,7 @@ const HomeContent = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [messages, suggestedQuestions]);
 
-    const handleExampleClick = async (card: TrendingQuery) => {
+    const handleExampleClick = async (card: any) => {
         const exampleText = card.text;
         lastSubmittedQueryRef.current = exampleText;
         setHasSubmitted(true);
@@ -1238,8 +1243,8 @@ const HomeContent = () => {
     };
 
     const SuggestionCards: React.FC<{
-        trendingQueries: TrendingQuery[];
-        handleExampleClick: (query: TrendingQuery) => void;
+        trendingQueries: any[];
+        handleExampleClick: (query: any) => void;
     }> = ({ trendingQueries, handleExampleClick }) => {
         const [isLoading, setIsLoading] = useState(true);
         const scrollRef = useRef<HTMLDivElement>(null);
