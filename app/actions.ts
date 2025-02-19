@@ -3,7 +3,7 @@
 
 import { serverEnv } from '@/env/server';
 import { SearchGroupId } from '@/lib/utils';
-import { openai } from '@ai-sdk/openai';
+import { azure } from '@ai-sdk/azure';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
@@ -13,7 +13,7 @@ export async function suggestQuestions(history: any[]) {
   console.log(history);
 
   const { object } = await generateObject({
-    model: openai("gpt-4o"),
+    model: azure(process.env.AZURE_OPENAI_MODEL!),
     temperature: 0,
     maxTokens: 300,
     topP: 0.3,

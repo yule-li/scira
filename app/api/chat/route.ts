@@ -1,7 +1,7 @@
 // /app/api/chat/route.ts
 import { getGroupConfig } from '@/app/actions';
 import { serverEnv } from '@/env/server';
-import { openai } from '@ai-sdk/openai';
+import { azure } from '@ai-sdk/azure';
 import { gemini } from '@/app/lib/gemini-provider';
 import CodeInterpreter from '@e2b/code-interpreter';
 import FirecrawlApp from '@mendable/firecrawl-js';
@@ -22,7 +22,7 @@ import { z } from 'zod';
 
 const scira = customProvider({
     languageModels: {
-        'scira-default': openai('gpt-4o'),
+        'scira-default': azure(process.env.AZURE_OPENAI_MODEL!),
         'scira-gemini': gemini('gemini-2.0-flash'),
     }
 })
