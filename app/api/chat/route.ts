@@ -1,9 +1,7 @@
 // /app/api/chat/route.ts
 import { getGroupConfig } from '@/app/actions';
 import { serverEnv } from '@/env/server';
-import { xai } from '@ai-sdk/xai';
-import { cerebras } from '@ai-sdk/cerebras';
-import { groq } from '@ai-sdk/groq';
+import { openai } from '@ai-sdk/openai';
 import { gemini } from '@/app/lib/gemini-provider';
 import CodeInterpreter from '@e2b/code-interpreter';
 import FirecrawlApp from '@mendable/firecrawl-js';
@@ -24,15 +22,8 @@ import { z } from 'zod';
 
 const scira = customProvider({
     languageModels: {
-        'scira-default': xai('grok-2-1212'),
-        'scira-grok-vision': xai('grok-2-vision-1212'),
-        'scira-llama': cerebras('llama-3.3-70b'),
+        'scira-default': openai('gpt-4o'),
         'scira-gemini': gemini('gemini-2.0-flash'),
-        'scira-r1': wrapLanguageModel({
-            model: groq('deepseek-r1-distill-llama-70b'),
-            middleware: extractReasoningMiddleware({ tagName: 'think' })
-        }),
-        'scira-qwen': groq('deepseek-r1-distill-qwen-32b'),
     }
 })
 
