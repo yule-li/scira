@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions } from 'ai';
+import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions, type LanguageModelV1StreamPart } from 'ai';
 
 export const gemini = (model: string) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -46,7 +46,7 @@ export const gemini = (model: string) => {
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
       const stream = result.stream;
-      return new ReadableStream({
+      return new ReadableStream<LanguageModelV1StreamPart>({
         async start(controller) {
           try {
             for await (const chunk of stream) {
