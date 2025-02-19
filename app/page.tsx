@@ -377,24 +377,7 @@ const TooltipButton = ({ href, tooltip, children }: {
     );
 };
 
-const XAIIcon = ({ size = 16 }: { size: number }) => {
-    return (
-        <svg
-            height={size}
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-            width={size}
-            style={{ color: "currentcolor" }}
-        >
-            <path
-                d="m3.005 8.858 8.783 12.544h3.904L6.908 8.858zM6.905 15.825 3 21.402h3.907l1.951-2.788zM16.585 2l-6.75 9.64 1.953 2.79L20.492 2zM17.292 7.965v13.437h3.2V3.395z"
-                fillRule='evenodd'
-                clipRule={'evenodd'}
-                fill={'currentColor'}
-            ></path>
-        </svg>
-    );
-}
+
 
 const IconMapping: Record<string, LucideIcon> = {
     stock: TrendingUp,
