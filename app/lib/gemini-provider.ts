@@ -29,8 +29,13 @@ export const gemini = (model: string) => {
           totalTokens: 0
         },
         rawCall: {
-          request: options,
-          response: result
+          rawPrompt: options.prompt,
+          rawSettings: {
+            temperature: 0.7,
+            topP: 0.8,
+            topK: 40,
+            maxOutputTokens: 2048
+          }
         },
         rawResponse: {
           headers: {}
