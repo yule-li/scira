@@ -52,7 +52,7 @@ export const gemini = (model: string) => {
             for await (const chunk of stream) {
               const text = chunk.text();
               controller.enqueue({
-                type: 'text',
+                type: 'text-delta',
                 text
               });
             }
