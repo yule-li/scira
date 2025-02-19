@@ -19,17 +19,20 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      return Promise.resolve({
-        text: text ?? undefined,
-        reasoning: undefined,
-        toolCalls: undefined,
-        logprobs: undefined,
-        raw: undefined,
-        tokens: undefined,
-        functionCallResult: undefined,
-        selectedFunctionCall: undefined,
-        choices: undefined
-      });
+      const response: {
+        text?: string;
+        reasoning?: string;
+        toolCalls?: any[];
+        logprobs?: any;
+        raw?: any;
+        tokens?: any;
+        functionCallResult?: any;
+        selectedFunctionCall?: any;
+        choices?: any;
+      } = {
+        text: text ?? undefined
+      };
+      return response;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
