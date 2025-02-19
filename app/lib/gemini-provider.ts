@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions } from 'ai';
+import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions, type LanguageModelV1FunctionToolCall, type LanguageModelV1LogProbs } from 'ai';
 
 export const gemini = (model: string) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -22,8 +22,8 @@ export const gemini = (model: string) => {
       return {
         text: text ?? undefined,
         reasoning: undefined,
-        toolCalls: undefined,
-        logprobs: undefined,
+        toolCalls: [] as LanguageModelV1FunctionToolCall[],
+        logprobs: undefined as LanguageModelV1LogProbs | undefined,
         raw: undefined,
         tokens: undefined,
         functionCallResult: undefined,
