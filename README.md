@@ -47,7 +47,7 @@ A minimalistic AI-powered search engine that helps you find information on the i
 - **Movie or TV Show Search**: Get information about any movie or TV show.
 
 ## LLM used
-- [xAI's Grok](https://x.ai/grok)
+- [OpenAI's GPT-4o](https://openai.com/)
 - [Google's Gemini Flash 2.0](https://ai.google.dev/docs/gemini_api_overview)
 - [Meta's Llama 3.3 70B by Cerebras](https://inference-docs.cerebras.ai/introduction)
 - [Deepseek R1 Distill by Groq Inc](https://console.groq.com/docs/model/deepseek-r1-distill-llama-70b)
