@@ -53,7 +53,7 @@ export const gemini = (model: string) => {
               const text = chunk.text();
               controller.enqueue({
                 type: 'text-delta',
-                text
+                textDelta: text
               });
             }
             controller.close();
