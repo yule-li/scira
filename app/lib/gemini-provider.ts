@@ -31,7 +31,7 @@ export const gemini = (model: string) => {
         choices: undefined,
         model: model,
         provider: 'google'
-      };
+      } as const;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
