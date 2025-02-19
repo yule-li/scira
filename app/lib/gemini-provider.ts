@@ -19,20 +19,49 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      const response = {
-        text: text ?? undefined,
+      return {
+        text,
+        toolCalls: [],
         finishReason: 'stop',
         usage: {
           promptTokens: 0,
           completionTokens: 0,
           totalTokens: 0
+        },
+        rawCall: {
+          request: options,
+          response: result
+        },
+        rawResponse: {
+          headers: {}
+        },
+        warnings: [],
+        providerMetadata: {
+          google: {
+            safetyRatings: null
+          }
         }
       };
-      return response;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
-      return result.stream;
+      const stream = result.stream;
+      return new ReadableStream({
+        async start(controller) {
+          try {
+            for await (const chunk of stream) {
+              const text = chunk.text();
+              controller.enqueue({
+                type: 'text',
+                text
+              });
+            }
+            controller.close();
+          } catch (error) {
+            controller.error(error);
+          }
+        }
+      });
     }
   };
 
