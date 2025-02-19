@@ -19,7 +19,7 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      return {
+      return Promise.resolve({
         text: text ?? undefined,
         reasoning: undefined,
         toolCalls: undefined,
@@ -29,7 +29,7 @@ export const gemini = (model: string) => {
         functionCallResult: undefined,
         selectedFunctionCall: undefined,
         choices: undefined
-      };
+      });
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
