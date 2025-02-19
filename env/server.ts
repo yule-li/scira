@@ -8,7 +8,7 @@ export const serverEnv = createEnv({
     AZURE_RESOURCE_NAME: z.string().min(1),
     AZURE_API_KEY: z.string().min(1),
     OPENAI_API_KEY: z.string().min(1),
-    ANTHROPIC_API_KEY: z.string().min(1),
+    GEMINI_API_KEY: z.string().min(1),
     CEREBRAS_API_KEY: z.string().min(1),
     GROQ_API_KEY: z.string().min(1),
     E2B_API_KEY: z.string().min(1),

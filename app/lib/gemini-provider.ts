@@ -17,14 +17,16 @@ export const gemini = (model: string) => {
     specificationVersion: 'v1',
     provider: 'google',
     modelId: model,
-    defaultObjectGenerationMode: 'text',
-    async complete(prompt: string) {
-      const result = await modelInstance.generateContent(prompt);
-      return result.response.text();
-    },
-    async completeStream(prompt: string) {
-      const result = await modelInstance.generateContentStream(prompt);
-      return result.stream;
+    defaultObjectGenerationMode: 'json',
+    completion: {
+      async complete(prompt: string) {
+        const result = await modelInstance.generateContent(prompt);
+        return result.response.text();
+      },
+      async completeStream(prompt: string) {
+        const result = await modelInstance.generateContentStream(prompt);
+        return result.stream;
+      }
     }
   };
 
