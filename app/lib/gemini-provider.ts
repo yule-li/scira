@@ -14,19 +14,18 @@ export const gemini = (model: string) => {
   });
 
   const wrappedModel: LanguageModelV1 = {
-    specificationVersion: 'v1',
-    provider: 'google',
-    modelId: model,
-    defaultObjectGenerationMode: 'json',
-    completion: {
-      async complete(prompt: string) {
-        const result = await modelInstance.generateContent(prompt);
-        return result.response.text();
-      },
-      async completeStream(prompt: string) {
-        const result = await modelInstance.generateContentStream(prompt);
-        return result.stream;
-      }
+    id: model,
+    name: 'Gemini Flash 2.0',
+    vendor: 'google',
+    version: '1',
+    contextWindow: 32000,
+    async complete(prompt: string) {
+      const result = await modelInstance.generateContent(prompt);
+      return result.response.text();
+    },
+    async completeStream(prompt: string) {
+      const result = await modelInstance.generateContentStream(prompt);
+      return result.stream;
     }
   };
 
