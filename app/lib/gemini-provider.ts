@@ -16,22 +16,12 @@ export const gemini = (model: string) => {
   const wrappedModel: LanguageModelV1 = {
     provider: 'google',
     modelId: model,
-    async doGenerate(options: LanguageModelV1CallOptions): Promise<{
-      text?: string;
-      reasoning?: string;
-      toolCalls?: any[];
-      logprobs?: any;
-      raw?: any;
-      tokens?: any;
-      functionCallResult?: any;
-      selectedFunctionCall?: any;
-      choices?: any;
-    }> {
+    async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      return {
+      return Promise.resolve({
         text: text ?? undefined
-      };
+      });
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
