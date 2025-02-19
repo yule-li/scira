@@ -34,6 +34,10 @@ export const gemini = (model: string) => {
           promptTokens: 0,
           completionTokens: 0,
           totalTokens: 0
+        },
+        rawCall: {
+          request: options,
+          response: result
         }
       };
     },
