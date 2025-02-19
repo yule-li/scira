@@ -49,9 +49,6 @@ A minimalistic AI-powered search engine that helps you find information on the i
 ## LLM used
 - [OpenAI's GPT-4o](https://openai.com/)
 - [Google's Gemini Flash 2.0](https://ai.google.dev/docs/gemini_api_overview)
-- [Meta's Llama 3.3 70B by Cerebras](https://inference-docs.cerebras.ai/introduction)
-- [Deepseek R1 Distill by Groq Inc](https://console.groq.com/docs/model/deepseek-r1-distill-llama-70b)
-- [OpenAI's o3-mini](https://openai.com/index/openai-o3-mini/)
 
 ## Built with
 - [Next.js](https://nextjs.org/)
