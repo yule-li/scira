@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions, type LanguageModelV1FinishReason } from 'ai';
+import { customProvider, wrapLanguageModel, extractReasoningMiddleware, LanguageModelV1, type LanguageModelV1CallOptions } from 'ai';
 
 export const gemini = (model: string) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -19,23 +19,32 @@ export const gemini = (model: string) => {
     async doGenerate(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContent(options.prompt.toString());
       const text = result.response.text();
-      return {
+      const response: {
+        text?: string;
+        reasoning?: string;
+        toolCalls?: any[];
+        logprobs?: any;
+        raw?: any;
+        tokens?: any;
+        functionCallResult?: any;
+        selectedFunctionCall?: any;
+        choices?: any;
+        finishReason?: string;
+        usage?: {
+          promptTokens: number;
+          completionTokens: number;
+          totalTokens: number;
+        };
+      } = {
         text: text,
-        reasoning: undefined,
-        toolCalls: [],
-        logprobs: undefined,
-        raw: undefined,
-        tokens: undefined,
-        functionCallResult: undefined,
-        selectedFunctionCall: undefined,
-        choices: undefined,
-        finishReason: 'stop' as LanguageModelV1FinishReason,
+        finishReason: 'stop',
         usage: {
           promptTokens: 0,
           completionTokens: 0,
           totalTokens: 0
         }
       };
+      return response;
     },
     async doGenerateStream(options: LanguageModelV1CallOptions) {
       const result = await modelInstance.generateContentStream(options.prompt.toString());
